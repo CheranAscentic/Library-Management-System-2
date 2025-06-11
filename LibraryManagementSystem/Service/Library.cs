@@ -47,9 +47,9 @@ namespace LibraryManagementSystem.Service
             Console.WriteLine($"{member.Name} returned '{book.Title}'.");
         }
 
-        public void DisplayBooks(IUser viewer)
+        public void DisplayBooks(IUser user)
         {
-            if (viewer.Type == "Member" || viewer.Type.ToLower().Contains("management"))
+            if (user.Type == "Member" || user.Type.ToLower().Contains("management"))
             {
                 foreach (var book in books)
                 {
