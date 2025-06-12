@@ -15,7 +15,6 @@ namespace LibraryManagementSystem.Model
 
         public List<Book> BorrowedBooks { get; set; }
         
-
         public Member(string name, string ID)
         {
             this.Name = name;
