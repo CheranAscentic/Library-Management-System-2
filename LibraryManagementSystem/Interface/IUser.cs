@@ -8,9 +8,9 @@ namespace LibraryManagementSystem.Interface
 {
     public interface IUser
     {
-        string Name { get; }
-        string ID { get; }
-        string Type { get; }
+        string Name { get; set; }
+        string Id { get; set; }
+        string Type { get; set; }
 
     }
 }

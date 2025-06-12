@@ -1,5 +1,6 @@
-﻿using LibraryManagementSystem.Interface;
+﻿using LibraryManagementSystem.Base;
 using LibraryManagementSystem.Model;
+using LibraryManagementSystem.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace LibraryManagementSystem.Service
     public class Library
     {
         private List<Book> books = new List<Book>();
-        private List<IUser> users = new List<IUser>();
+        private List<User> users = new List<User>();
 
         public void AddBook(Book book)
         {
@@ -47,9 +48,9 @@ namespace LibraryManagementSystem.Service
             Console.WriteLine($"{member.Name} returned '{book.Title}'.");
         }
 
-        public void DisplayBooks(IUser user)
+        public void DisplayBooks(User user)
         {
-            if (user.Type.ToLower().Contains("member") || user.Type.ToLower().Contains("management"))
+            if (user.Type == UserType.Member || user.Type == UserType.StaffManagement)
             {
                 foreach (var book in books)
                 {
@@ -70,7 +71,7 @@ namespace LibraryManagementSystem.Service
             }
         }
 
-        public void AddUser(IUser user)
+        public void AddUser(User user)
         {
             users.Add(user);
             Console.WriteLine($"Member '{user.Name}' added.");

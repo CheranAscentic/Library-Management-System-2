@@ -1,4 +1,5 @@
-﻿using LibraryManagementSystem.Interface;
+﻿using LibraryManagementSystem.Base;
+using LibraryManagementSystem.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,20 +8,25 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Model
 {
-    public class Member : IUser
+    public class Member : User
     {
-        public string Name { get; private set; }
-        public string ID { get; private set; }
-        public string Type { get; private set; }
-
         public List<Book> BorrowedBooks { get; set; }
-        
-        public Member(string name, string ID)
+
+        public Member(string name, int id) : base(name, id, UserType.Member)
         {
-            this.Name = name;
-            this.ID = ID;
             this.BorrowedBooks = new List<Book>();
-            this.Type = "Member";
+        }
+
+        public override UserType Type
+        {
+            get { return type; }
+            set
+            {
+                if (type != UserType.Member)
+                {
+                    throw new Exception("Invalid user type for member.");
+                }
+            }
         }
     }
 }
