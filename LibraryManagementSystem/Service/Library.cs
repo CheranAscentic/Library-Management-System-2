@@ -43,9 +43,15 @@ namespace LibraryManagementSystem.Service
 
         public void ReturnBook(Book book, Member member)
         {
-            book.Available = true;
-            member.BorrowedBooks.Remove(book);
-            Console.WriteLine($"{member.Name} returned '{book.Title}'.");
+            if (member.BorrowedBooks.Remove(book))
+            {
+                book.Available = true;
+                Console.WriteLine($"{member.Name} returned '{book.Title}'.");
+            }
+            else
+            {
+                Console.WriteLine($"{member.Name} did not borrow '{book.Title}'.");
+            }
         }
 
         public void DisplayBooks(User user)

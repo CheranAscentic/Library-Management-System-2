@@ -1,6 +1,6 @@
-﻿using LibraryManagementSystem.Interface;
-using LibraryManagementSystem.Model;
+﻿using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Service;
+using LibraryManagementSystem.Enum;
 
 namespace LibraryManagementSystem;
 
@@ -13,12 +13,12 @@ public class Program
         library.AddBook(new Book("1984", "George Orwell", 2010, "History"));
         library.AddBook(new Book("To Kill a Mockingbird", "Harper Lee", 2015, "Fiction"));
 
-        Member member = new Member("Alice", "M001");
+        Member member = new Member("Alice", 1);
 
         library.AddUser(member);
-        library.AddUser(new Member("Bob", "A001"));
-        library.AddUser(new Staff("Charlie", "S001", "StaffMinor"));
-        library.AddUser(new Staff("Diana", "S002", "StaffManagement"));
+        library.AddUser(new Member("Bob", 2));
+        library.AddUser(new Staff("Charlie", 3, UserType.StaffMinor));
+        library.AddUser(new Staff("Diana", 4, UserType.StaffManagement));
 
         while (true)
         {
