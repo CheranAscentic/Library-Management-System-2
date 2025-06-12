@@ -1,10 +1,4 @@
 ﻿using LibraryManagementSystem.Enum;
-using LibraryManagementSystem.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Base
 {
@@ -23,17 +17,11 @@ namespace LibraryManagementSystem.Base
 
         public string Name
         {
-            get { return name; }
-            set
+            get => name;
+            protected set
             {
-                if (value.Equals(null))
-                {
-                    throw new Exception("Name cannot be null.");
-                }
-                else if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new Exception("Name cannot be empty.");
-                }
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Name cannot be empty.");
                 name = value;
             }
         }
@@ -51,29 +39,10 @@ namespace LibraryManagementSystem.Base
             }
         }
 
-        public abstract UserType Type 
+        public abstract UserType Type
         {
-            get; 
+            get;
             set;
         }
-        /*{
-            get { return type; }
-            set
-            {
-                UserType[] validTypes = { UserType.Member, UserType.StaffMinor, UserType.StaffManagement };
-                
-                if (value.Equals(null))
-                {
-                    throw new Exception("UserType cannot be null."); 
-                }
-                else if (!validTypes.Contains(value))
-                {
-                    throw new Exception("User cannot be of this UserType");
-                }
-                type = value;
-            }
-        }*/
-
-
     }
 }
