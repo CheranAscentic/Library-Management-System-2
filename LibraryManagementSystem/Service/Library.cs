@@ -49,7 +49,7 @@ namespace LibraryManagementSystem.Service
 
         public void DisplayBooks(IUser user)
         {
-            if (user.Type == "Member" || user.Type.ToLower().Contains("management"))
+            if (user.Type.ToLower().Contains("member") || user.Type.ToLower().Contains("management"))
             {
                 foreach (var book in books)
                 {
@@ -64,9 +64,9 @@ namespace LibraryManagementSystem.Service
 
         public void DisplayUsers()
         {
-            foreach (var member in users)
+            foreach (var user in users)
             {
-                Console.WriteLine($"{member.Name} ({member.Type})");
+                Console.WriteLine($"{user.Name} ({user.Type})");
             }
         }
 

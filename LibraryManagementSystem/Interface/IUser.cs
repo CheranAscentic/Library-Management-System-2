@@ -10,6 +10,7 @@ namespace LibraryManagementSystem.Interface
     {
         string Name { get; }
         string ID { get; }
-        String Type { get; }
+        string Type { get; }
+
     }
 }
