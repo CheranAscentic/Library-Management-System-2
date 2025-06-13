@@ -2,13 +2,13 @@
 
 namespace LibraryManagementSystem.Base
 {
-    public abstract class User
+    public abstract class BaseUser
     {
         private string name;
         private int id;
         protected UserType type;
 
-        public User(string name, int id, UserType userType)
+        public BaseUser(string name, int id, UserType userType)
         {
             this.Name = name;
             this.Id = id;
@@ -18,7 +18,7 @@ namespace LibraryManagementSystem.Base
         public string Name
         {
             get => name;
-            protected set
+            set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Name cannot be empty.");

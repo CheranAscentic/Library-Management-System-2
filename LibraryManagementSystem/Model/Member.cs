@@ -1,14 +1,9 @@
 ﻿using LibraryManagementSystem.Base;
 using LibraryManagementSystem.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Model
 {
-    public class Member : User
+    public class Member : BaseUser
     {
         public List<Book> BorrowedBooks { get; set; }
 

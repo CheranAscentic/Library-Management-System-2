@@ -1,14 +1,9 @@
 ﻿using LibraryManagementSystem.Base;
 using LibraryManagementSystem.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Model
 {
-    public class Staff : User
+    public class Staff : BaseUser
     {
         public Staff(string name, int id, UserType type) : base(name, id, type)
         {
@@ -23,7 +18,7 @@ namespace LibraryManagementSystem.Model
             get { return type; }
             set
             {
-                UserType[] validTypes = { UserType.Member, UserType.StaffMinor, UserType.StaffManagement };
+                UserType[] validTypes = { UserType.StaffMinor, UserType.StaffManagement };
 
                 if (value.Equals(null))
                 {
