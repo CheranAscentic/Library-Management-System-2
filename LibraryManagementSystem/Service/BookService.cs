@@ -24,14 +24,12 @@ namespace LibraryManagementSystem.Service
 
         public Book GetBook(string title)
         {
-            foreach (var book in books) { 
-                if (book.Title == title)
-                {
-                    return book;
-                }
+            var book = books.FirstOrDefault(b => b.Title == title);
+            if (book == null)
+            {
+                throw new Exception("Book with Title cannot be found");
             }
-
-            throw new Exception("Book with Title cannot be found");
+            return book;
         }
 
         public List<Book> GetBooks()
@@ -41,15 +39,13 @@ namespace LibraryManagementSystem.Service
 
         public Book RemoveBook(string title)
         {
-            foreach (var each in books) { 
-                if (each.Title == title)
-                {
-                    books.Remove(each);
-                    return each;
-                }
+            var book = books.FirstOrDefault(b => b.Title == title);
+            if (book == null)
+            {
+                throw new Exception("Book with Title cannot be found");
             }
-
-            throw new Exception("Book with Title cannot be removed");
+            books.Remove(book);
+            return book;
         }
     }
 }

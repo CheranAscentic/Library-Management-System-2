@@ -17,10 +17,11 @@ namespace LibraryManagementSystem.Model
             get { return type; }
             set
             {
-                if (type != UserType.Member)
+                if (value != UserType.Member)
                 {
                     throw new Exception("Invalid user type for member.");
                 }
+                type = value;
             }
         }
     }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LibraryManagementSystem.Service
 {
@@ -65,15 +66,15 @@ namespace LibraryManagementSystem.Service
             throw new Exception("User with ID canot be found");
         }
 
-        public void RemoveUser(int id)
+        public BaseUser RemoveUser(int id)
         {
-            foreach (var each in users)
+            var user = users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
             {
-                if (each.Id == id)
-                {
-                    users.Remove(each);
-                }
+                throw new Exception("User with Id cannot be found");
             }
+            users.Remove(user);
+            return user;
         }
     }
 }

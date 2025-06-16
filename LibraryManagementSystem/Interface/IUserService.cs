@@ -11,7 +11,7 @@ namespace LibraryManagementSystem.Interface
     public interface IUserService
     {
         public void AddUser(string name, int id, UserType type);
-        public void RemoveUser(int id);
+        public BaseUser RemoveUser(int id);
         public BaseUser GetUserById(int id);
         public List<BaseUser> GetAllUsers();
     }

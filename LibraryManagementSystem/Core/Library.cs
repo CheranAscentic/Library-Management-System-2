@@ -2,29 +2,47 @@
 using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Enum;
 using LibraryManagementSystem.Interface;
+using LibraryManagementSystem.SystemException;
+using LibraryManagementSystem.Controller;
 
 namespace LibraryManagementSystem.Core
 {
     public class Library
     {
-        private IBookService bookService;
-        private IUserService userService;
+        private BookController bookController;
+        private UserController userController;
         private BaseMenu loginMenu;
         private BaseMenu mainMenu;
 
-        public Library(IBookService bookService, IUserService userService, BaseMenu loginMenu, BaseMenu mainMenu)
+        public Library(BookController bookController, UserController userController, BaseMenu loginMenu, BaseMenu mainMenu)
         {
-            this.bookService = bookService;
-            this.userService = userService;
+            this.bookController = this.bookController;
+            this.userController = this.userController;
             this.loginMenu = loginMenu;
             this.mainMenu = mainMenu;
         }
 
         public void start() 
         {
-            while (loginMenu.Display())
+            try
             {
-                while (mainMenu.Display()) { }
+                while (true)
+                {
+                    while (loginMenu.Display()) { }
+                    Console.WriteLine("");
+                    while (mainMenu.Display()) { }
+                }
+            }
+
+            catch (ExitApplicationException ex)
+            {
+                Console.WriteLine("Exiting application: " + ex.Message);
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return;
             }
         }
 

@@ -1,5 +1,7 @@
 ﻿
 
+using LibraryManagementSystem.SystemException;
+
 namespace LibraryManagementSystem.Base
 {
     public abstract class BaseMenu
@@ -11,7 +13,7 @@ namespace LibraryManagementSystem.Base
         {
             while (true)
             {
-                Console.Write(prompt);
+                Console.Write(prompt + ": ");
                 string input = Console.ReadLine();
                 if (!string.IsNullOrWhiteSpace(input))
                 {
@@ -24,7 +26,7 @@ namespace LibraryManagementSystem.Base
         {
             while (true)
             {
-                Console.Write(prompt);
+                Console.Write(prompt + ": ");
                 string input = Console.ReadLine();
 
                 try
@@ -43,7 +45,8 @@ namespace LibraryManagementSystem.Base
         {
             while (true)
             {
-                Console.Write(prompt);
+                Console.WriteLine(prompt);
+                Console.Write("Option: ");
                 string input = Console.ReadLine();
 
                 try
@@ -63,6 +66,11 @@ namespace LibraryManagementSystem.Base
                     Console.WriteLine("Invalid input. Please enter a valid integer.");
                 }
             }
+        }
+
+        protected void Exit()
+        {
+            throw new ExitApplicationException();
         }
     }
 }
