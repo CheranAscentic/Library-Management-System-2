@@ -15,15 +15,15 @@ public class Program
             IBookService bookService = new BookService();
             IUserService userService = new UserService();
             
-            BookController bookController = new BookController(bookService);
-            UserController userController = new UserController(userService);
+            /*BookController bookController = new BookController(bookService);
+            UserController userController = new UserController(userService);*/
             
             AddSampleData(bookService, userService);
             
-            LoginMenu loginMenu = new LoginMenu(userController);
-            MainMenu mainMenu = new MainMenu(bookController, userController);
+            LoginMenu loginMenu = new LoginMenu(userService);
+            MainMenu mainMenu = new MainMenu(bookService, userService);
 
-            Library library = new Library(bookController, userController, loginMenu, mainMenu);
+            Library library = new Library(loginMenu, mainMenu);
 
             library.start();
         } 

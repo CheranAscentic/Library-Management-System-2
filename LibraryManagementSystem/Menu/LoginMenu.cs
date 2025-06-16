@@ -8,9 +8,9 @@ namespace LibraryManagementSystem.Menu
 {
     public class LoginMenu : BaseMenu
     {
-        UserController userController;
-        public LoginMenu(UserController userController) : base() {
-            this.userController = userController;
+        IUserService userService;
+        public LoginMenu(IUserService userService) : base() {
+            this.userService = userService;
         }
         public override bool Display()
         {
@@ -54,7 +54,7 @@ namespace LibraryManagementSystem.Menu
             try
             {
                 int userId = GetIntInput("Enter User ID: ");
-                BaseUser user = userController.GetUserById(userId);
+                BaseUser user = userService.GetUserById(userId);
                 if (user == null)
                 {
                     Console.WriteLine("User not found. Please try again.");
@@ -91,7 +91,7 @@ namespace LibraryManagementSystem.Menu
                     _ => throw new ArgumentException("Invalid user type selected.")
                 };
 
-                userController.AddUser(userName, userId, type);
+                userService.AddUser(userName, userId, type);
                 Console.WriteLine("New User Created");
             }
             catch (Exception ex)

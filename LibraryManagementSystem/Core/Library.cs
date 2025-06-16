@@ -9,15 +9,11 @@ namespace LibraryManagementSystem.Core
 {
     public class Library
     {
-        private BookController bookController;
-        private UserController userController;
         private BaseMenu loginMenu;
         private BaseMenu mainMenu;
 
-        public Library(BookController bookController, UserController userController, BaseMenu loginMenu, BaseMenu mainMenu)
+        public Library(BaseMenu loginMenu, BaseMenu mainMenu)
         {
-            this.bookController = this.bookController;
-            this.userController = this.userController;
             this.loginMenu = loginMenu;
             this.mainMenu = mainMenu;
         }

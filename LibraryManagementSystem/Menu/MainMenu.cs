@@ -9,13 +9,13 @@ namespace LibraryManagementSystem.Menu
 {
     public class MainMenu : BaseMenu
     {
-        private readonly BookController bookController;
-        private readonly UserController userController;
+        private readonly IBookService bookService;
+        private readonly IUserService userService;
 
-        public MainMenu(BookController bookController, UserController userController) : base()
+        public MainMenu(IBookService bookService, IUserService userService) : base()
         {
-            this.bookController = bookController;
-            this.userController = userController;
+            this.bookService = bookService;
+            this.userService = userService;
         }
 
         public override bool Display()
@@ -73,7 +73,7 @@ namespace LibraryManagementSystem.Menu
 
         private void ViewAllBooks()
         {
-            var books = bookController.GetBooks();
+            var books = bookService.GetBooks();
             if (books.Count == 0)
             {
                 Console.WriteLine("No books found.");
@@ -94,7 +94,7 @@ namespace LibraryManagementSystem.Menu
             string category = GetInput("Enter category: ");
             try
             {
-                var book = bookController.AddBook(title, author, year, category);
+                var book = bookService.AddBook(title, author, year, category);
                 Console.WriteLine($"Book '{book.Title}' added.");
             }
             catch (Exception e)
@@ -108,7 +108,7 @@ namespace LibraryManagementSystem.Menu
             string title = GetInput("Enter the title of the book to remove");
             try
             {
-                var book = bookController.RemoveBook(title);
+                var book = bookService.RemoveBook(title);
                 Console.WriteLine($"Book '{book.Title}' removed.");
             }
             catch (Exception e)
@@ -121,7 +121,7 @@ namespace LibraryManagementSystem.Menu
         {
             try
             {
-                var users = userController.GetAllUsers();
+                var users = userService.GetAllUsers();
                 if (users.Count == 0)
                 {
                     Console.WriteLine("No users found.");
@@ -156,7 +156,7 @@ namespace LibraryManagementSystem.Menu
                     _ => throw new ArgumentException("Invalid user type selected")
                 };
 
-                userController.CreateUser(name, id, type);
+                userService.AddUser(name, id, type);
                 Console.WriteLine($"User '{name}' added as {type}.");
             }
             catch (Exception ex)
@@ -170,7 +170,7 @@ namespace LibraryManagementSystem.Menu
             try
             {
                 int id = GetIntInput("Enter the ID of the user to remove");
-                var user = userController.RemoveUser(id);
+                var user = userService.RemoveUser(id);
                 Console.WriteLine($"User {user.Name} removed");
             }
             catch (Exception ex)
