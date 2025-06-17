@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.Service
 {
     public class BookService : IBookService
     {
-        private List<Book> books;
+        private readonly List<Book> books;
 
         public BookService() { 
             this.books = new List<Book>();

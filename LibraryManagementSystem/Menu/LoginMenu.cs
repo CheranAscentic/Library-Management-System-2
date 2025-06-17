@@ -2,15 +2,14 @@
 using LibraryManagementSystem.Base;
 using LibraryManagementSystem.Enum;
 using LibraryManagementSystem.SystemException;
-using LibraryManagementSystem.Controller;
 
 namespace LibraryManagementSystem.Menu
 {
     public class LoginMenu : BaseMenu
     {
-        IUserService userService;
+        readonly IUserService  userService;
         public LoginMenu(IUserService userService) : base() {
-            this.userService = userService;
+            this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
         public override bool Display()
         {

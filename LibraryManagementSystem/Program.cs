@@ -1,5 +1,4 @@
-﻿using LibraryManagementSystem.Controller;
-using LibraryManagementSystem.Core;
+﻿using LibraryManagementSystem.Core;
 using LibraryManagementSystem.Enum;
 using LibraryManagementSystem.Interface;
 using LibraryManagementSystem.Menu;
@@ -25,7 +24,7 @@ public class Program
 
             Library library = new Library(loginMenu, mainMenu);
 
-            library.start();
+            library.Start();
         } 
         catch(Exception ex) {
             Console.WriteLine($"System failed to start: {ex.Message}");

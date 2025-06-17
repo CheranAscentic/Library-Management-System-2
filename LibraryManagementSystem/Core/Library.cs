@@ -3,22 +3,25 @@ using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Enum;
 using LibraryManagementSystem.Interface;
 using LibraryManagementSystem.SystemException;
-using LibraryManagementSystem.Controller;
+//using LibraryManagementSystem.Controller;
 
 namespace LibraryManagementSystem.Core
 {
     public class Library
     {
-        private BaseMenu loginMenu;
-        private BaseMenu mainMenu;
+        //BaseMenu is an abstract Class
+        private readonly BaseMenu loginMenu;
+        private readonly BaseMenu mainMenu;
 
         public Library(BaseMenu loginMenu, BaseMenu mainMenu)
         {
-            this.loginMenu = loginMenu;
-            this.mainMenu = mainMenu;
+            this.loginMenu = loginMenu ?? throw new ArgumentNullException(nameof(loginMenu));
+            this.mainMenu = mainMenu ?? throw new ArgumentNullException(nameof(mainMenu));
         }
 
-        public void start() 
+        /// <summary>
+        /// 
+        public void Start() 
         {
             try
             {

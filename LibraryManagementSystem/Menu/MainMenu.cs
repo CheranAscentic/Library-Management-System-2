@@ -1,5 +1,4 @@
 ﻿using LibraryManagementSystem.Base;
-using LibraryManagementSystem.Controller;
 using LibraryManagementSystem.Enum;
 using LibraryManagementSystem.Interface;
 using System;
@@ -14,8 +13,8 @@ namespace LibraryManagementSystem.Menu
 
         public MainMenu(IBookService bookService, IUserService userService) : base()
         {
-            this.bookService = bookService;
-            this.userService = userService;
+            this.bookService = bookService ?? throw new ArgumentNullException(nameof(bookService));
+            this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
 
         public override bool Display()
