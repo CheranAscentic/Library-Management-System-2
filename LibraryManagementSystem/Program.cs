@@ -3,6 +3,7 @@ using LibraryManagementSystem.Enum;
 using LibraryManagementSystem.Interface;
 using LibraryManagementSystem.Menu;
 using LibraryManagementSystem.Service;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LibraryManagementSystem;
 
@@ -10,12 +11,48 @@ public class Program
 {
     public static void Main(string[] args)
     {   
-        try {
+        try
+        {
+            // Create service collection
+            var services = new ServiceCollection();
+
+            // Register services (singleton = one instance for the app lifetime)
+            services.AddSingleton<IBookService, BookService>();
+            services.AddSingleton<IUserService, UserService>();
+
+            // Register menus (transient = new instance each time requested)
+            services.AddTransient<LoginMenu>();
+            services.AddTransient<MainMenu>();
+
+            // Register the Library class
+            services.AddTransient<Library>(provider => new Library(
+                provider.GetRequiredService<LoginMenu>(),
+                provider.GetRequiredService<MainMenu>()
+            ));
+
+            // Build service provider
+            using ServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            // Add sample data
+            AddSampleData(
+                serviceProvider.GetRequiredService<IBookService>(),
+                serviceProvider.GetRequiredService<IUserService>()
+            );
+
+            // Get and start the library
+            var library = serviceProvider.GetRequiredService<Library>();
+            library.Start();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"System failed to start: {ex.Message}");
+        }
+        /*try {
             IBookService bookService = new BookService();
             IUserService userService = new UserService();
             
-            /*BookController bookController = new BookController(bookService);
-            UserController userController = new UserController(userService);*/
+            *//*BookController bookController = new BookController(bookService);
+            UserController userController = new UserController(userService);*//*
             
             AddSampleData(bookService, userService);
             
@@ -28,7 +65,7 @@ public class Program
         } 
         catch(Exception ex) {
             Console.WriteLine($"System failed to start: {ex.Message}");
-        }
+        }*/
     }
     
     private static void AddSampleData(IBookService bookService, IUserService userService)

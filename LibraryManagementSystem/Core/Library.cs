@@ -19,8 +19,6 @@ namespace LibraryManagementSystem.Core
             this.mainMenu = mainMenu ?? throw new ArgumentNullException(nameof(mainMenu));
         }
 
-        /// <summary>
-        /// 
         public void Start() 
         {
             try
