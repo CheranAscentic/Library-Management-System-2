@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interface\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
   </ItemGroup>
 
 </Project>
